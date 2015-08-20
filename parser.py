@@ -2,7 +2,7 @@
 
 from blocktools import *
 
-with open('1m.dat', 'rb') as blockfile:
+with open('1M.dat', 'rb') as blockfile:
 		print "Magic Number:\t %8x" % uint4(blockfile)
 		print "Blocksize:\t %u" % uint4(blockfile)
 	
