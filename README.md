@@ -1,6 +1,4 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Block Chain Tools}
+## Block Chain Tools
 
 Block chain parser implementation written in python. Contains examples for Bitcoin and Litecoin.
 
@@ -31,6 +29,3 @@ Alex Gorale
 
 BSD 3
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
