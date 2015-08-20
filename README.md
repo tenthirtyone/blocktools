@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-# ${1:Project Name}
+# ${1:Block Chain Tools}
 
 Block chain parser implementation written in python. Contains examples for Bitcoin and Litecoin.
 
