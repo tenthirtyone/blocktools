@@ -14,7 +14,7 @@ def parse(blockchain):
 
 def main():
 	if len(sys.argv) < 2:
-		print 'Usage: blockparser.py filename'
+            print 'Usage: sight.py filename'
 	else:
 		with open(sys.argv[1], 'rb') as blockchain:
 			parse(blockchain)
