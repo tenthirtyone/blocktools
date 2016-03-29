@@ -19,6 +19,9 @@ class BlockHeader:
 class Block:
 	def __init__(self, blockchain):
 		self.magicNum = uint4(blockchain)
+		print '#'
+		print blockchain.tell()
+		print '#'
 		self.blocksize = uint4(blockchain)
 		self.setHeader(blockchain)
 		self.txCount = varint(blockchain)
