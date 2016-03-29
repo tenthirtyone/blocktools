@@ -25,10 +25,11 @@ class Block:
 		self.txCount = 0
 		self.Txs = []
 
-
-		if self.isEoF(blockchain) == False:
+		if self.hasLength(blockchain, 8):	
 			self.magicNum = uint4(blockchain)
 			self.blocksize = uint4(blockchain)
+		
+		if self.hasLength(blockchain, self.blocksize):
 			self.setHeader(blockchain)
 			self.txCount = varint(blockchain)
 			self.Txs = []
@@ -36,8 +37,9 @@ class Block:
 			for i in range(0, self.txCount):
 				tx = Tx(blockchain)
 				self.Txs.append(tx)
-		
-		self.isEoF(blockchain)				
+		else:
+			self.continueParsing = False
+						
 
 	def continueParsing(self):
 		return self.continueParsing
@@ -47,7 +49,7 @@ class Block:
 			return self.blockdize
 		return 0
 
-	def isEoF(self, blockchain):
+	def hasLength(self, blockchain, size):
 		curPos = blockchain.tell()
 		blockchain.seek(0, 2)
 		
@@ -56,9 +58,9 @@ class Block:
 
 		tempBlockSize = fileSize - curPos
 		print tempBlockSize
-		if tempBlockSize < 80:
-			return True
-		return False
+		if tempBlockSize < size:
+			return False
+		return True
 
 
 	def setHeader(self, blockchain):
