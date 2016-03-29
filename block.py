@@ -18,18 +18,48 @@ class BlockHeader:
 
 class Block:
 	def __init__(self, blockchain):
-		self.magicNum = uint4(blockchain)
-		print '#'
-		print blockchain.tell()
-		print '#'
-		self.blocksize = uint4(blockchain)
-		self.setHeader(blockchain)
-		self.txCount = varint(blockchain)
+		self.continueParsing = True
+		self.magicNum = 0
+		self.blocksize = 0
+		self.blockheader = ''
+		self.txCount = 0
 		self.Txs = []
 
-		for i in range(0, self.txCount):
-			tx = Tx(blockchain)
-			self.Txs.append(tx)
+
+		if self.isEoF(blockchain) == False:
+			self.magicNum = uint4(blockchain)
+			self.blocksize = uint4(blockchain)
+			self.setHeader(blockchain)
+			self.txCount = varint(blockchain)
+			self.Txs = []
+
+			for i in range(0, self.txCount):
+				tx = Tx(blockchain)
+				self.Txs.append(tx)
+		
+		self.isEoF(blockchain)				
+
+	def continueParsing(self):
+		return self.continueParsing
+
+	def getBlocksize(self):
+		if self.blocksize != '':
+			return self.blockdize
+		return 0
+
+	def isEoF(self, blockchain):
+		curPos = blockchain.tell()
+		blockchain.seek(0, 2)
+		
+		fileSize = blockchain.tell()
+		blockchain.seek(curPos)
+
+		tempBlockSize = fileSize - curPos
+		print tempBlockSize
+		if tempBlockSize < 80:
+			return True
+		return False
+
 
 	def setHeader(self, blockchain):
 		self.blockHeader = BlockHeader(blockchain)

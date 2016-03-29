@@ -5,19 +5,20 @@ from block import Block, BlockHeader
 
 def parse(blockchain):
 	print 'print Parsing Block Chain'
+	continueParsing = True
 	counter = 0
 	blockchain.seek(0, 2)
 	fSize = blockchain.tell() - 80 #Minus last Block header size for partial file
 	blockchain.seek(0, 0)
-	while True:
-		if fSize < blockchain.tell():
-			print ''
-			print 'End of File reached'
-			break
-		print counter
+	while continueParsing:	
 		block = Block(blockchain)
 		block.toString()
+		continueParsing = block.continueParsing
 		counter+=1
+
+	print ''
+	print 'Reached End of Field'
+	print 'Parsed %s blocks', counter
 
 def main():
 	if len(sys.argv) < 2:
