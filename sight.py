@@ -12,9 +12,9 @@ def parse(blockchain):
 	blockchain.seek(0, 0)
 	while continueParsing:	
 		block = Block(blockchain)
-		if block.continueParsing:
-			block.toString()
 		continueParsing = block.continueParsing
+		if continueParsing:
+			block.toString()
 		counter+=1
 
 	print ''
