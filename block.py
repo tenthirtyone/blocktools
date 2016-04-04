@@ -28,6 +28,9 @@ class Block:
 		if self.hasLength(blockchain, 8):	
 			self.magicNum = uint4(blockchain)
 			self.blocksize = uint4(blockchain)
+		else:
+			self.continueParsing = False
+			return
 		
 		if self.hasLength(blockchain, self.blocksize):
 			self.setHeader(blockchain)
@@ -45,9 +48,7 @@ class Block:
 		return self.continueParsing
 
 	def getBlocksize(self):
-		if self.blocksize != '':
-			return self.blockdize
-		return 0
+		return self.blocksize
 
 	def hasLength(self, blockchain, size):
 		curPos = blockchain.tell()
