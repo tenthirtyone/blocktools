@@ -2,16 +2,18 @@
 
 Block chain parser implementation written in python. Contains examples for Bitcoin and Litecoin.
 
-blocktools.py - tools for reading binary data from block files
-block.py - classes for Blocks, Transactions
-parser.py - Genesis block demo
-sight.py - block parser
-5megBlock.dat - first 5 megs from blk00000.dat
-blk65.dat - first 5 megs from blk00065.dat
+- blocktools.py - tools for reading binary data from block files
+- block.py - classes for Blocks, Transactions
+- parser.py - Genesis block demo
+- sight.py - block parser
+- 5megBlock.dat - first 5 megs from blk00000.dat
+- blk65.dat - first 5 megs from blk00065.dat
 
 ## Usage
 
-'python sight.py 1M.dat'
+```bash
+pythonpython sight.py 1M.dat
+```
 
 ## Contributing
 
