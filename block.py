@@ -170,8 +170,13 @@ class txOutput:
 		op_idx = int(hexstr[0:2],16)
 		try: 
 			op_code1 = OPCODE_NAMES[op_idx]
-		except KeyError:
-			print "OP_CODE %x is out of range of OPCODE_NAMEi %x, and %x" % (op_idx, min(OPCODE_NAMES), max(OPCODE_NAMES))
+		except KeyError: #Obselete pay to pubkey directly 
+			print " \tOP_CODE %d is probably obselete pay to address"
+			keylen = op_idx
+			op_codeTail = OPCODE_NAMES[int(hexstr[2+keylen*2:2+keylen*2+2],16)]
+			print " \tPubkey OP_CODE:\t " "None " + "Bytes:%d " % keylen +\
+					"tail_op_code:" +  op_codeTail + " " 
+			print "\tPure Pubkey:\t   %s" % hexstr[2:2+keylen*2]
 			return hexstr
 		if op_code1 == "OP_DUP":  #P2PKHA pay to pubkey hash mode
 	 		op_code2 = OPCODE_NAMES[int(hexstr[2:4],16)] + " "
