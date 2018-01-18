@@ -125,7 +125,7 @@ class txInput:
 		self.seqNo = uint4(blockchain)
 
 	def toString(self):
-		print "\tPrev. Tx Hash:\t %s" % hashStr(self.prevhash)
+#		print "\tPrev. Tx Hash:\t %s" % hashStr(self.prevhash)
 		print "\tTx Out Index:\t %s" % self.decodeOutIdx(self.txOutId)
 		print "\tScript Length:\t %d" % self.scriptLen
 #		print "\tScriptSig:\t %s" % 
@@ -150,6 +150,9 @@ class txInput:
 		s = ""
 		if(idx == 0xffffffff):
 			s = " Coinbase with special index"
+			print "\tCoinbase Text:\t %s" % hashStr(self.prevhash).decode("utf-8")
+		else: 
+			print "\tPrev. Tx Hash:\t %s" % hashStr(self.prevhash)
 		return "%8x"%idx + s 
 		
 class txOutput:
@@ -164,7 +167,12 @@ class txOutput:
 		print "\tScriptPubkey:\t %s" % self.decodeScriptPubkey(self.pubkey)
 	def decodeScriptPubkey(self,data):
 		hexstr = hashStr(data)
-		op_code1 = OPCODE_NAMES[int(hexstr[0:2],16)]
+		op_idx = int(hexstr[0:2],16)
+		try: 
+			op_code1 = OPCODE_NAMES[op_idx]
+		except KeyError:
+			print "OP_CODE %x is out of range of OPCODE_NAMEi %x, and %x" % (op_idx, min(OPCODE_NAMES), max(OPCODE_NAMES))
+			return hexstr
 		if op_code1 == "OP_DUP":  #P2PKHA pay to pubkey hash mode
 	 		op_code2 = OPCODE_NAMES[int(hexstr[2:4],16)] + " "
 			keylen = int(hexstr[4:6],16) 
