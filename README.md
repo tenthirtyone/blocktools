@@ -12,7 +12,7 @@ Block chain parser implementation written in python. Contains examples for Bitco
 ## Usage
 
 ```bash
-pythonpython sight.py 1M.dat
+python sight.py 1M.dat
 ```
 
 ## Contributing
