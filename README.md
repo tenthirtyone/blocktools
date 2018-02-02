@@ -1,3 +1,9 @@
+This is a fork of block chain tools.
+
+Recently added a few features, and fixed some bugs. 
+
+See git status for more details.
+
 ## Block Chain Tools
 
 Block chain parser implementation written in python. Contains examples for Bitcoin and Litecoin.
@@ -30,4 +36,3 @@ Alex Gorale
 ## License
 
 BSD 3
-
